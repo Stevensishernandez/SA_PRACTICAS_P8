@@ -24,20 +24,20 @@ this copy all files from the build into nginx server.
 ## Commands Docker Image Push
     
     docker build -t jeamv/pareja8 .
-    docker push -t userX/imageX .
+    docker push -t userX/imageX 
 
 example
 
     docker build -t jeamv/pareja8 .
-    docker push jeamv/pareja8 .
+    docker push jeamv/pareja8 
 
 ## Commands Docker Image Pull
 
-    docker pull -t userX/imageX .
+    docker pull -t userX/imageX 
 
 example
 
-    docker pull jeamv/pareja8 .
+    docker pull jeamv/pareja8 
 
 ## Command Run Image
 
