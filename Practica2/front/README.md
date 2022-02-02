@@ -11,7 +11,6 @@ The docker file 2 basic operations:
     COPY ./ /usr/local/app/
     RUN npm install
     RUN npm run build
-
 ### create image of nginx as server
 
     FROM nginx:latest
