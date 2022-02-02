@@ -11,8 +11,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh "cd Practica2/front/"
-				sh 'docker build -t jeamv/pareja8:latest .'
+				sh 'docker build -t jeamv/pareja8:latest -f ./Practica2/front/Dockerfile .'
 			}
 		}
 
