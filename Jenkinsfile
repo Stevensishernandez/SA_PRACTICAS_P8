@@ -28,6 +28,28 @@ pipeline{
 				sh 'docker push jeamv/pareja8:latest'
 			}
 		}
+		
+		stage('STOP') {
+
+			steps {
+				sh 'docker stop pareja_ocho'
+			}
+		}
+		
+		stage('RM') {
+
+			steps {
+				sh 'docker rm pareja_ocho'
+			}
+		}
+		
+		stage('RUN') {
+
+			steps {
+				sh 'docker run -d -p 4200:80 --name pareja_ocho -it jeamv/pareja8'
+			}
+		}
+		
 	}
 
 	post {
