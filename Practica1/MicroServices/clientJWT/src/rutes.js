@@ -13,10 +13,43 @@ var connection = mysql.createPool(aws_keys.db_credentials);
   app.post('/getPedido', verifyToken, async function(req, res){
     jwt.verify(req.token, 'secretClient', (error, authData)=>{
       if(error){
+        console.log('Error cuando se solicito pedido al restaurante');
          res.json({mensage: "Rol no correspondiente"});
+         
       }else{
+        console.log('Se solicito pedido al restaurante');
         res.json({
           mensage: "Pedido devulto"
+        });
+      }
+    })
+  });
+
+  app.post('/verificarRestaurante', verifyToken, async function(req, res){
+    jwt.verify(req.token, 'secretClient', (error, authData)=>{
+      if(error){
+        console.log('Error cuando se verifico el pedido al restaurante');
+         res.json({mensage: "Rol no correspondiente"});
+         
+      }else{
+        console.log('Se verifico el pedido al restaurante');
+        res.json({
+          mensage: "Se verifico el pedido al restaurante"
+        });
+      }
+    })
+  });
+
+  app.post('/verificarRepartidor', verifyToken, async function(req, res){
+    jwt.verify(req.token, 'secretClient', (error, authData)=>{
+      if(error){
+        console.log('Error cuando se verifico el pedido al Repartidos');
+         res.json({mensage: "Rol no correspondiente"});
+         
+      }else{
+        console.log('Se verifico el pedido al Repartidos');
+        res.json({
+          mensage: "Se verifico el pedido al Repartidos"
         });
       }
     })
