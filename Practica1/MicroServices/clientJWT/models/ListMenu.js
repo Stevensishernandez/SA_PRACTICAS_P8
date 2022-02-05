@@ -1,19 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListUser = void 0;
+exports.ListMenu = void 0;
 var Menu_1 = require("./Menu");
-var ListUser = /** @class */ (function () {
-    function ListUser() {
+var ListMenu = /** @class */ (function () {
+    function ListMenu() {
         this.listmenus = [];
-        this.insert("hamburguesa y papas", 50, 1);
-        this.insert("Ensalada y arroz", 20, 2);
-        this.insert("Pescado y Conchas", 30, 3);
-        this.insert("Ceviche de maricos", 40, 4);
-        this.insert("Tacos y Burritos", 50, 5);
+        this.insert("b", "hamburguesa y papas", 50, 1);
+        this.insert("b", "Ensalada y arroz", 20, 2);
+        this.insert("b", "Tacos y Burritos", 50, 3);
+        this.insert("bb", "Ceviche de maricos", 40, 4);
+        this.insert("bb", "Pescado y Conchas", 30, 3);
     }
-    ListUser.prototype.insert = function (descripcion, precio, tipo) {
-        this.listmenus.push(new Menu_1.Menu(descripcion, precio, tipo));
+    ListMenu.prototype.insert = function (nombre, descripcion, precio, tipo) {
+        this.listmenus.push(new Menu_1.Menu(nombre, descripcion, precio, tipo));
     };
-    return ListUser;
+    ListMenu.prototype.getMenu = function (tipo) {
+        for (var _i = 0, _a = this.listmenus; _i < _a.length; _i++) {
+            var x = _a[_i];
+            if (x.tipo == tipo) {
+                return x;
+            }
+        }
+        return null;
+    };
+    return ListMenu;
 }());
-exports.ListUser = ListUser;
+exports.ListMenu = ListMenu;

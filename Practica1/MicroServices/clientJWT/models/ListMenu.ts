@@ -1,18 +1,27 @@
 import {Menu} from "./Menu";
 
-export class ListUser{
+export class ListMenu{
     public listmenus : Array<Menu>
 
     constructor() {
         this.listmenus= [];
-        this.insert("hamburguesa y papas", 50, 1);
-        this.insert("Ensalada y arroz", 20, 2);
-        this.insert("Pescado y Conchas", 30, 3);
-        this.insert("Ceviche de maricos", 40, 4);
-        this.insert("Tacos y Burritos", 50, 5);
+        this.insert("b", "hamburguesa y papas", 50, 1);
+        this.insert("b","Ensalada y arroz", 20, 2);
+        this.insert("b","Tacos y Burritos", 50, 3);
+        this.insert("bb","Ceviche de maricos", 40, 4);
+        this.insert("bb","Pescado y Conchas", 30, 3);
     }
 
-    insert(descripcion: string, precio: number , tipo: number){
-        this.listmenus.push(new Menu(descripcion, precio, tipo));
+    insert(nombre: string, descripcion: string, precio: number , tipo: number){
+        this.listmenus.push(new Menu(nombre, descripcion, precio, tipo));
+    }
+
+    getMenu(tipo : number): Menu{
+        for( var x of this.listmenus){
+            if(x.tipo == tipo ){
+                return x;
+            }
+        }
+        return null;
     }
 }
