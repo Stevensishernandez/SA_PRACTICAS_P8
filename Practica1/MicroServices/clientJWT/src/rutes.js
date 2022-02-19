@@ -17,7 +17,7 @@ var lm = new ListMenu();
 var lp = new ListPedidos();
 
 //Bearer <Token>
- //End point de Solicitar pedido al restaurante (recibo como token un usuario
+ //End point de Solicitar pedid+o al restaurante (recibo como token un usuario
   app.post('/getPedido', verifyToken, async function(req, res){
       var username = req.headers['username'];
       var pass = req.headers['pass'];
