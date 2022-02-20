@@ -8,6 +8,15 @@ pipeline{
 
 	stages {
 
+	    	stage('Test') {
+	      		steps {
+				dir('Practica2/front') {
+					sh 'npm install
+		  			sh 'npm run test'
+				}
+	      		}
+	    	}
+
 		stage('Build') {
 
 			steps {
@@ -29,23 +38,16 @@ pipeline{
 			}
 		}
 		
-		stage('STOP') {
-
-			steps {
-				sh 'docker stop pareja_ocho'
-			}
-		}
-		
-		stage('RM') {
-
-			steps {
-				sh 'docker rm pareja_ocho'
-			}
-		}
 		
 		stage('RUN') {
 
 			steps {
+				script {
+					sh 'docker stop pareja_ocho'
+					sh 'docker rm pareja_ocho'
+				} catch (Exception e) {
+              				echo 'Exception occurred: ' + e.toString()
+            			}
 				sh 'docker run -d -p 4200:80 --name pareja_ocho -it jeamv/pareja8'
 			}
 		}
