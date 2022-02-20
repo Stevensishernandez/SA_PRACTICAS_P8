@@ -11,7 +11,7 @@ pipeline{
 	    	stage('Test') {
 	      		steps {
 				dir('Practica2/front') {
-					sh 'npm install
+					sh 'npm install'
 		  			sh 'npm run test'
 				}
 	      		}
