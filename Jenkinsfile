@@ -15,7 +15,7 @@ pipeline{
 		stage('Sonarqube') {
 		    steps {
 			    withSonarQubeEnv('SQ1') {
-                			sh 'mvn clean package sonar:sonar'
+                			sh 'pwd'
               			}
 		    }
 		}
