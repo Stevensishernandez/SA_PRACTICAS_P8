@@ -15,9 +15,10 @@ pipeline{
 		stage('Scan') {
 			agent any
 			steps {
-				withSonarQubeEnv('SQ1'){
-					sh 'npm install'
-		  			sh 'npm run test'
+				container('sonar_sonarqube_1') {
+					    withSonarQubeEnv('SonarQube') {
+						sh "/usr/local/sonar-scanner"
+					    }
 				}
 			}
 		}
