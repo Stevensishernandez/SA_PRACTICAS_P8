@@ -12,23 +12,26 @@ pipeline{
 	
 	stages {
 
-		stage('Sonarqube') {
+		stage('build && SonarQube analysis') {
 		    steps {
-			    withSonarQubeEnv('SQ1') {
-                			sh 'pwd'
-              			}
-		    	}
+			withSonarQubeEnv('SQ1) {
+			    // Optionally use a Maven environment you've configured already
+			    withMaven(maven:'Maven 5.13') {
+				sh 'mvn clean package sonar:sonar'
+			    }
+			}
+		    }
 		}
-		
-		
-		stage("Quality Gate"){
-			steps{
-		  		timeout(time: 1, unit: 'MINUTES') {
-		      			waitForQualityGate abortPipeline: true
-		        	}
-		    	}
-	        }
 
+		stage("Quality Gate") {
+		    steps {
+			timeout(time: 1, unit: 'HOURS') {
+			    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+			    // true = set pipeline to UNSTABLE, false = don't
+			    waitForQualityGate abortPipeline: true
+			}
+		    }
+		}
 		
 	    	stage('Test') {
 	      		steps {
