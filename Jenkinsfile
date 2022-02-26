@@ -12,9 +12,9 @@ pipeline{
 	
 	stages {
 
-		stage('SonarQube analysis') {
+		stage('Analisis') {
 		      def scannerHome = tool 'SonarScanner 2.8';
-			withSonarQubeEnv('SonarQubeServe', envOnly: true) {
+			withSonarQubeEnv('SonarQubeServe') {
 			   sh 'pwd'
 			}
 		    }
