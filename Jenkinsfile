@@ -4,6 +4,7 @@ pipeline{
 
 	tools {
     	    nodejs "node"
+	    sonarQube 'SonarQubeScanner'
   	}
 	
 	options {
@@ -13,11 +14,8 @@ pipeline{
 	stages {
 
 		stage('SonarQube analysis') {
-		      tools {
-			sonarQube 'SonarQube Scanner 2.8'
-		      }
 		      steps {
-			withSonarQubeEnv('SonarQube Scanner') {
+			withSonarQubeEnv('SonarQubeServe') {
 			  sh 'sonar-scanner'
 			}
 		      }
