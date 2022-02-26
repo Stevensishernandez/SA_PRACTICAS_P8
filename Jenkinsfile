@@ -8,7 +8,7 @@ pipeline {
           scannerHome = tool 'SonarQube Scanner 2.8'
         }
         withSonarQubeEnv('SonarQubeServe') {
-          sh "${scannerHome}/bin/sonar-scanner"
+          sh "pwd"
         }
       }
     }
