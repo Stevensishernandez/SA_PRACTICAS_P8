@@ -15,7 +15,7 @@ pipeline{
 		stage('SonarQube analysis') {
 		      steps {
 			withSonarQubeEnv('SonarQubeServe', envOnly: true) {
-			   println ${env.SONAR_HOST_URL} 
+			   sh 'pwd'
 			}
 		      }
 		    }
