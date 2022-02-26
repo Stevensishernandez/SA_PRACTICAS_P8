@@ -17,8 +17,17 @@ pipeline{
 			    withSonarQubeEnv('SQ1') {
                 			sh 'pwd'
               			}
-		    }
+		    	}
 		}
+		
+		
+		stage("Quality Gate"){
+			steps{
+		  		timeout(time: 1, unit: 'MINUTES') {
+		      			waitForQualityGate abortPipeline: true
+		        	}
+		    	}
+	        }
 
 		
 	    	stage('Test') {
