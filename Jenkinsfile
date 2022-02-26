@@ -17,7 +17,6 @@ pipeline{
 			    withSonarQubeEnv('SQ1') {
                 			sh 'mvn clean package sonar:sonar'
               			}
-			}
 		    }
 		}
 
