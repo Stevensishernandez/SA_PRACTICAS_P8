@@ -27,9 +27,15 @@ pipeline{
 		stage('RUN') {
 
 			steps {
-				sh 'docker stop pareja_ocho'
-				sh 'docker rm pareja_ocho'
-				sh 'docker run -d -p 4200:80 --name pareja_ocho -it jeamv/pareja8'
+				script {
+					try {
+						sh 'docker stop pareja_ocho'
+						sh 'docker rm pareja_ocho'
+					} catch (Exception e) {
+						echo 'Exception occurred: ' + e.toString()
+					}
+					sh 'docker run -d -p 4200:80 --name pareja_ocho -it jeamv/pareja8'
+				}	
 			}
 		}
 		
