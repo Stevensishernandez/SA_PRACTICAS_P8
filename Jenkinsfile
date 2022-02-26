@@ -12,17 +12,19 @@ pipeline{
 	
 	stages {
 
-		stage('Scan') {
-			agent any
-			steps {
-				container('sonar_sonarqube_1') {
-					    withSonarQubeEnv('SonarQube') {
-						sh "/usr/local/sonar-scanner"
-					    }
-				}
+		stage('Sonarqube') {
+		    steps {
+			container('sonar_sonarqube_1') {
+			    withSonarQubeEnv('SonarQube') {
+				sh "/usr/local/sonar-scanner"
+			    }
+			    timeout(time: 10, unit: 'MINUTES') {
+				waitForQualityGate abortPipeline: true
+			    }
 			}
+		    }
 		}
-		
+
 		
 	    	stage('Test') {
 	      		steps {
