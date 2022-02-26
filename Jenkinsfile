@@ -4,7 +4,6 @@ pipeline{
 
 	tools {
     	    nodejs "node"
-	    sonarQube 'SonarQubeScanner'
   	}
 	
 	options {
@@ -15,8 +14,8 @@ pipeline{
 
 		stage('SonarQube analysis') {
 		      steps {
-			withSonarQubeEnv('SonarQubeServe') {
-			  sh 'sonar-scanner'
+			withSonarQubeEnv('SonarQubeServe', envOnly: true) {
+			   println ${env.SONAR_HOST_URL} 
 			}
 		      }
 		    }
