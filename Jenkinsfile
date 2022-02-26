@@ -6,9 +6,11 @@ pipeline{
     	    nodejs "node"
   	}
 	
+	options {
+		buildDiscarder(logRotator(numToKeepStr: '5')) 
+	}
+	
 	stages {
-
-		
 
 		stage('Scan') {
 
