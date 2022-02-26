@@ -12,26 +12,17 @@ pipeline{
 	
 	stages {
 
-		stage('build && SonarQube analysis') {
-		    steps {
-			withSonarQubeEnv('SQ1') {
-			    // Optionally use a Maven environment you've configured already
-			    withMaven(maven:'Maven 5.13') {
-				sh 'mvn clean package sonar:sonar'
-			    }
+		stage('SonarQube analysis') {
+		      steps {
+			script {
+			  // requires SonarQube Scanner 2.8+
+			  scannerHome = tool 'SonarQube Scanner 2.8'
 			}
-		    }
-		}
-
-		stage("Quality Gate") {
-		    steps {
-			timeout(time: 1, unit: 'HOURS') {
-			    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-			    // true = set pipeline to UNSTABLE, false = don't
-			    waitForQualityGate abortPipeline: true
+			withSonarQubeEnv('SonarQube Scanner') {
+			  sh "${scannerHome}/bin/sonar-scanner"
 			}
+		      }
 		    }
-		}
 		
 	    	stage('Test') {
 	      		steps {
