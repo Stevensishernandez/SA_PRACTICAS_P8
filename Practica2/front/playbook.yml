@@ -1,0 +1,16 @@
+  - name: "Playing with Ansible and Git"
+    hosts: localhost
+    connection: local
+    tasks:
+
+    - name: "testing"
+      shell: npm run test
+      register: "output"
+      
+    - debug: var=output.stdout_lines
+
+    - name: "rebuild"
+      shell: pm2 stop 'g8' && pm2 delete 'g8' && pm2 start 'npm run start' --name 'g8'
+      register: "output"
+          
+    - debug: var=output.stdout_lines
