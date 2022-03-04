@@ -10,14 +10,14 @@
     - debug: var=output.stdout_lines
 
     - name: "stop and delete"
-      shell: pm2 stop 'g8' && pm2 delete 'g8'
+      shell: pm2 stop 'g8' && pm2 delete 'g8' && pm2 save --force
       ignore_errors: True
       register: "output"
      
     - debug: var=output.stdout_lines
    
     - name: "start"
-      shell: pm2 start 'npm run start' --name 'g8'
+      shell: pm2 start 'npm run start' --name 'g8' && pm2 save --force
       register: "output"
           
     - debug: var=output.stdout_lines
