@@ -13,7 +13,6 @@ pipeline{
 	      		steps {
 				dir('Practica2/front') {
 					sh 'npm install'
-		  			sh 'npm run sonar'
 				}
 	      		}
 	    	}
@@ -21,7 +20,7 @@ pipeline{
 	    	stage('Test') {
 	      		steps {
 				dir('Practica2/front') {
-		  			sh 'npm run test'
+		  			sh 'puppet apply /Practica2/front/manifest.pp -environment=testing --test'
 				}
 	      		}
 	    	}
@@ -38,12 +37,10 @@ pipeline{
 			steps {
 				script {
 					try {
-						sh 'docker stop pareja_ocho'
-						sh 'docker rm pareja_ocho'
+						sh 'puppet apply /Practica2/front/manifest.pp -environment=produccion  --test'
 					} catch (Exception e) {
 						echo 'Exception occurred: ' + e.toString()
 					}
-					sh 'docker run -d -p 4200:80 --name pareja_ocho -it jeamv/pareja8'
 				}	
 			}
 		}
