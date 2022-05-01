@@ -17,7 +17,7 @@ spec:
         app: frontg23
     spec:
       containers:
-      - image: pareja8
+      - image: jeamv/pareja8
         name: front-so2-g23
         resources: {}
       #nodeSelector:
