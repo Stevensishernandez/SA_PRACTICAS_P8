@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+
+  labels:
+    app: frontg23
+  name: frontg23
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontg23
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontg23
+    spec:
+      containers:
+      - image: jeamv/pareja8
+        name: front-so2-g23
+        resources: {}
+      #nodeSelector:
+        #kubernetes.io/hostname: gke-cluster-1-default-pool-fca39739-5w3x
+status: {}

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: backg23
+  name: backg23
+spec:
+  ports:
+  - port: 3500
+    protocol: TCP
+    targetPort: 3500
+  selector:
+    app: backg23
+  type: LoadBalancer
+status:
+  loadBalancer: {}
